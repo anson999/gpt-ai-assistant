@@ -8,8 +8,11 @@ import {
   createEvents, MOCK_TEXT_OK, MOCK_USER_01, TIMEOUT,
 } from './utils.js';
 
-beforeEach(() => {
-  //
+beforeEach(async () => {
+  const events = [
+    ...createEvents([COMMAND_BOT_DEACTIVATE.text]),
+  ];
+  await handleEvents(events);
 });
 
 afterEach(() => {
@@ -18,8 +21,7 @@ afterEach(() => {
 
 test('COMMAND_BOT_ACTIVATE', async () => {
   const events = [
-    ...createEvents([COMMAND_BOT_DEACTIVATE.text]),
-    ...createEvents(['嗨！']),
+    ...createEvents(['嗨！']), // should be ignored
     ...createEvents([COMMAND_BOT_ACTIVATE.text]),
     ...createEvents(['嗨！']),
   ];
@@ -29,14 +31,10 @@ test('COMMAND_BOT_ACTIVATE', async () => {
   } catch (err) {
     console.error(err);
   }
-  expect(getPrompt(MOCK_USER_01).sentences.length).toEqual(3);
+  expect(getPrompt(MOCK_USER_01).messages.length).toEqual(5);
   const replies = results.map(({ messages }) => messages.map(({ text }) => text));
   expect(replies).toEqual(
     [
-      [
-        t('__ERROR_MISSING_ENV')('VERCEL_ACCESS_TOKEN'),
-        COMMAND_BOT_DEACTIVATE.reply,
-      ],
       [
         t('__ERROR_MISSING_ENV')('VERCEL_ACCESS_TOKEN'),
         COMMAND_BOT_ACTIVATE.reply,

@@ -1,23 +1,28 @@
 import { encode } from 'gpt-3-encoder';
+import config from '../../config/index.js';
 import { t } from '../../locales/index.js';
-import { PARTICIPANT_AI } from '../../services/openai.js';
-import Sentence from './sentence.js';
+import { ROLE_AI, ROLE_HUMAN, ROLE_SYSTEM } from '../../services/openai.js';
+import { addMark } from '../../utils/index.js';
+import Message from './message.js';
 
-const MAX_SENTENCES = 16;
-const MAX_TOKENS = 1024;
+const MAX_MESSAGES = config.APP_MAX_PROMPT_MESSAGES + 3;
+const MAX_TOKENS = config.APP_MAX_PROMPT_TOKENS;
 
 class Prompt {
-  sentences = [];
+  messages = [];
 
   constructor() {
-    this.write(PARTICIPANT_AI, t('__COMPLETION_INIT_MESSAGE'));
+    this
+      .write(ROLE_SYSTEM, config.APP_INIT_PROMPT || t('__COMPLETION_DEFAULT_SYSTEM_PROMPT'))
+      .write(ROLE_HUMAN, `${t('__COMPLETION_DEFAULT_HUMAN_PROMPT')(config.HUMAN_NAME)}${config.HUMAN_INIT_PROMPT}`)
+      .write(ROLE_AI, `${t('__COMPLETION_DEFAULT_AI_PROMPT')(config.BOT_NAME)}${config.BOT_INIT_PROMPT}`);
   }
 
   /**
-   * @returns {Sentence}
+   * @returns {Message}
    */
-  get lastSentence() {
-    return this.sentences.length > 0 ? this.sentences[this.sentences.length - 1] : null;
+  get lastMessage() {
+    return this.messages.length > 0 ? this.messages[this.messages.length - 1] : null;
   }
 
   get tokenCount() {
@@ -26,33 +31,33 @@ class Prompt {
   }
 
   erase() {
-    if (this.sentences.length > 0) {
-      this.sentences.pop();
+    if (this.messages.length > 0) {
+      this.messages.pop();
     }
     return this;
   }
 
   /**
-   * @param {string} title
-   * @param {string} text
+   * @param {string} role
+   * @param {string} content
    */
-  write(title, text = '') {
-    if (this.sentences.length >= MAX_SENTENCES || this.tokenCount >= MAX_TOKENS) {
-      this.sentences.shift();
+  write(role, content = '') {
+    if (this.messages.length >= MAX_MESSAGES || this.tokenCount >= MAX_TOKENS) {
+      this.messages.splice(3, 1);
     }
-    this.sentences.push(new Sentence({ title, text }));
+    this.messages.push(new Message({ role, content: addMark(content) }));
     return this;
   }
 
   /**
-   * @param {string} text
+   * @param {string} content
    */
-  patch(text) {
-    this.sentences[this.sentences.length - 1].text += text;
+  patch(content) {
+    this.messages[this.messages.length - 1].content += content;
   }
 
   toString() {
-    return this.sentences.map((sentence) => sentence.toString()).join('');
+    return this.messages.map((sentence) => sentence.toString()).join('');
   }
 }
 

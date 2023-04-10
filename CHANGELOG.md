@@ -1,5 +1,242 @@
 # Changelog
 
+## 4.4.4 (2023-03-21)
+
+### Bug Fixes
+
+- Fix default value of `APP_MAX_GROUPS` environment variable
+- Fix default value of `APP_MAX_USERS` environment variable
+
+## 4.4.3 (2023-03-11)
+
+### Bug Fixes
+
+- Fix wording of `doc` and `report` commands
+
+## 4.4.2 (2023-03-11)
+
+### Bug Fixes
+
+- Add `ERROR_MESSAGE_DISABLED` environment variable
+- Deprecate `ERROR_TIMEOUT_DISABLED` environment variable
+
+## 4.4.1 (2023-03-10)
+
+### Bug Fixes
+
+- Add default max tokens for chat completion api
+
+## 4.4.0 (2023-03-08)
+
+### New Features
+
+- Support snapshots of `gpt-3.5-turbo` model
+
+## 4.3.0 (2023-03-08)
+
+### New Features
+
+- Add `VERCEL_TEAM_ID` environment variable
+
+## 4.2.2 (2023-03-08)
+
+### Bug Fixes
+
+- Optimize error handling
+
+## 4.2.1 (2023-03-07)
+
+### Bug Fixes
+
+- Fix `add-mark` util
+
+## 4.2.0 (2023-03-05)
+
+### New Features
+
+- Add `APP_INIT_PROMPT` environment variable
+
+## 4.1.3 (2023-03-05)
+
+### Bug Fixes
+
+- Fix `add-mark` util
+
+## 4.1.2 (2023-03-05)
+
+### Bug Fixes
+
+- Update `add-mark` util
+
+## 4.1.1 (2023-03-05)
+
+### Bug Fixes
+
+- End text with dot
+
+## 4.1.0 (2023-03-05)
+
+- Support `whisper-1` model
+- Add `opencc` text converter
+- Store display name and group name to storage
+
+## 4.0.4 (2023-03-03)
+
+### Bug Fixes
+
+- Optimize `search` command
+
+## 4.0.3 (2023-03-03)
+
+### Bug Fixes
+
+- Optimize `search` and `draw` commands
+
+## 4.0.2 (2023-03-02)
+
+### Bug Fixes
+
+- Fix prompt messages
+
+## 4.0.1 (2023-03-02)
+
+### Bug Fixes
+
+- Fix `enquire` command
+
+## 4.0.0 (2023-03-02)
+
+### New Features
+
+- Support `gpt-3.5-turbo` model
+
+### Bug Fixes
+
+- Rename `APP_MAX_PROMPT_SENTENCES` environment variable to `APP_MAX_PROMPT_MESSAGES`
+
+## 3.7.0 (2023-02-26)
+
+### New Features
+
+- Add demo for `search` command
+- Add `SERPAPI_LOCATION` environment variable
+- Add `SERPAPI_LANG` environment variable
+
+## 3.6.0 (2023-02-26)
+
+### New Features
+
+- Add `APP_API_TIMEOUT` environment variable
+- Add `APP_MAX_PROMPT_SENTENCES` environment variable
+- Add `APP_MAX_PROMPT_TOKENS` environment variable
+
+## 3.5.0 (2023-02-26)
+
+### New Features
+
+- Rename `HUMAN_BACKGROUND` environment variable to `HUMAN_INIT_PROMPT`
+- Rename `BOT_BACKGROUND` environment variable to `BOT_INIT_PROMPT`
+
+## 3.4.1 (2023-02-25)
+
+### Bug Fixes
+
+- Fix default bot name
+
+## 3.4.0 (2023-02-24)
+
+### New Features
+
+- Add `info` endpoint
+
+## 3.3.5 (2023-02-24)
+
+### Bug Fixes
+
+- Fix prompt wording
+
+## 3.3.4 (2023-02-24)
+
+### Bug Fixes
+
+- Fix prompt wording
+
+## 3.3.3 (2023-02-24)
+
+### Bug Fixes
+
+- Fix tests
+
+## 3.3.2 (2023-02-23)
+
+### Bug Fixes
+
+- Fix prompt wording
+
+## 3.3.1 (2023-02-23)
+
+### Bug Fixes
+
+- Fix prompt wording
+
+## 3.3.0 (2023-02-23)
+
+### New Features
+
+- Add `BOT_TONE` environment variable
+
+## 3.2.1 (2023-02-22)
+
+### Bug Fixes
+
+- Fix timeout wording
+
+## 3.2.0 (2023-02-22)
+
+### New Features
+
+- Add `HUMAN_NAME` environment variable
+- Add `HUMAN_BACKGROUND` environment variable
+- Add `BOT_BACKGROUND` environment variable
+
+## 3.1.0 (2023-02-21)
+
+### New Features
+
+- Implement `forget` command
+
+## 3.0.0 (2023-02-18)
+
+### New Features
+
+- Implement `search` command
+
+## 2.5.1 (2023-02-18)
+
+### New Features
+
+- Rename `BOT_TIMEOUT_DISABLED` environment variable to `ERROR_TIMEOUT_DISABLED`
+
+## 2.5.0 (2023-02-18)
+
+### New Features
+
+- Add `BOT_TIMEOUT_DISABLED` environment variable
+
+## 2.4.0 (2023-02-17)
+
+### New Features
+
+- Add `BOT_DEACTIVATED` environment variable
+
+## 2.3.0 (2023-02-11)
+
+### New Features
+
+- Add `VERCEL_TIMEOUT` environment variable
+- Add `OPENAI_TIMEOUT` environment variable
+- Add `LINE_TIMEOUT` environment variable
+
 ## 2.2.0 (2023-02-04)
 
 ### New Features

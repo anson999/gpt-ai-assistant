@@ -4,10 +4,11 @@ import Command from './command.js';
 
 export default new Command({
   type: TYPE_SYSTEM,
-  label: t('__COMMAND_SYS_REPORT_LABEL'),
-  text: t('__COMMAND_SYS_REPORT_TEXT'),
+  label: t('__COMMAND_BOT_SEARCH_LABEL'),
+  text: t('__COMMAND_BOT_SEARCH_TEXT'),
   aliases: [
-    '/report',
-    'Report',
+    ...t('__COMMAND_BOT_SEARCH_ALIASES'),
+    '/search',
+    'Search',
   ],
 });

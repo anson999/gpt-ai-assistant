@@ -6,7 +6,7 @@ import { updateHistory } from '../history/index.js';
  * @param {Context} context
  * @returns {boolean}
  */
-const check = (context) => context.isCommand(COMMAND_SYS_DOC);
+const check = (context) => context.hasCommand(COMMAND_SYS_DOC);
 
 /**
  * @param {Context} context
@@ -15,7 +15,7 @@ const check = (context) => context.isCommand(COMMAND_SYS_DOC);
 const exec = (context) => check(context) && (
   async () => {
     updateHistory(context.id, (history) => history.erase());
-    context.pushText('https://github.com/memochou1993/gpt-ai-assistant', GENERAL_COMMANDS);
+    context.pushText('https://memochou1993.github.io/gpt-ai-assistant-docs/', GENERAL_COMMANDS);
     return context;
   }
 )();

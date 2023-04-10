@@ -1,6 +1,6 @@
 import config from '../../config/index.js';
 import { MOCK_TEXT_OK } from '../../constants/mock.js';
-import { PARTICIPANT_AI, PARTICIPANT_HUMAN } from '../../services/openai.js';
+import { ROLE_AI, ROLE_HUMAN } from '../../services/openai.js';
 import { generateImage } from '../../utils/index.js';
 import { COMMAND_BOT_DRAW } from '../commands/index.js';
 import Context from '../context.js';
@@ -20,9 +20,10 @@ const check = (context) => context.hasCommand(COMMAND_BOT_DRAW);
 const exec = (context) => check(context) && (
   async () => {
     const prompt = getPrompt(context.userId);
-    prompt.write(PARTICIPANT_HUMAN, `${context.trimmedText}？`).write(PARTICIPANT_AI);
+    prompt.write(ROLE_HUMAN, `${context.trimmedText}`).write(ROLE_AI);
     try {
-      const { url } = await generateImage({ prompt: context.trimmedText, size: config.OPENAI_IMAGE_GENERATION_SIZE });
+      const trimmedText = context.trimmedText.replace(COMMAND_BOT_DRAW.text, '');
+      const { url } = await generateImage({ prompt: trimmedText, size: config.OPENAI_IMAGE_GENERATION_SIZE });
       prompt.patch(MOCK_TEXT_OK);
       setPrompt(context.userId, prompt);
       updateHistory(context.id, (history) => history.write(config.BOT_NAME, MOCK_TEXT_OK));

@@ -7,14 +7,16 @@ import {
   deployHandler,
   docHandler,
   drawHandler,
+  forgetHandler,
   enquireHandler,
   reportHandler,
   retryHandler,
+  searchHandler,
   talkHandler,
   versionHandler,
 } from './handlers/index.js';
 import Context from './context.js';
-import Event from './event.js';
+import Event from './models/event.js';
 
 /**
  * @param {Context} context
@@ -28,9 +30,11 @@ const handleContext = async (context) => (
   || deployHandler(context)
   || docHandler(context)
   || drawHandler(context)
+  || forgetHandler(context)
   || enquireHandler(context)
   || reportHandler(context)
   || retryHandler(context)
+  || searchHandler(context)
   || versionHandler(context)
   || talkHandler(context)
   || context
@@ -42,11 +46,12 @@ const handleEvents = async (events = []) => (
       (await Promise.all(
         events
           .map((event) => new Event(event))
-          .filter((event) => event.isMessage && event.isText)
+          .filter((event) => event.isMessage)
+          .filter((event) => event.isText || event.isAudio)
           .map((event) => new Context(event))
           .map((context) => context.initialize()),
       ))
-        .map((context) => (!context.error ? handleContext(context) : context)),
+        .map((context) => (context.error ? context : handleContext(context))),
     ))
       .filter((context) => context.messages.length > 0)
       .map((context) => replyMessage(context)),
