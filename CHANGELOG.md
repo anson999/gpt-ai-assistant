@@ -1,5 +1,54 @@
 # Changelog
 
+## 4.7.5 (2023-10-01)
+
+### Bug Fixes
+
+- Update status page
+
+## 4.7.4 (2023-08-26)
+
+### Bug Fixes
+
+- Update status page
+
+## 4.7.3 (2023-08-25)
+
+### Bug Fixes
+
+- Fix commands
+
+## 4.7.2 (2023-08-05)
+
+### Bug Fixes
+
+- Fix `translate` command
+
+## 4.7.1 (2023-08-01)
+
+### Bug Fixes
+
+- Optimize `search` command
+- Add aliases for commands
+
+## 4.7.0 (2023-06-08)
+
+### New Features
+
+- Add `OPENAI_COMPLETION_STOP_SEQUENCES` environment variable
+
+## 4.6.0 (2023-05-03)
+
+### New Features
+
+- Support `gpt-4` model
+
+## 4.5.0 (2023-04-27)
+
+### New Features
+
+- Support `zh_CN` locale
+
 ## 4.4.4 (2023-03-21)
 
 ### Bug Fixes
